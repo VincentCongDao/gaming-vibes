@@ -4,3 +4,5 @@
      1. When user sign up, don't need for confirmation
 
 * Serverless netlify function
+* Preview
+** [Gaming-vibes](https://suspicious-mcnulty-13f698.netlify.app/)
