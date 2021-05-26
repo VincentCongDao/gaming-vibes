@@ -12,9 +12,26 @@ export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    // init netlify identity connection
-    // Whether if the user is login or logout
-    netlifyIdentity.init();
+    // Event listener
+    netlifyIdentity.on("login", (user) => {
+      setUser(user);
+      netlifyIdentity.close();
+      console.log("login event");
+    });
+
+    netlifyIdentity.on("logout", () => {
+      setUser(null);
+      console.log("logout event");
+
+      // init netlify identity connection
+      // Whether if the user is login or logout
+      netlifyIdentity.init();
+
+      return () => {
+        netlifyIdentity.off("login");
+        netlifyIdentity.off("logout");
+      };
+    });
   }, []);
 
   // When user click on the login button to activate this function
@@ -22,7 +39,11 @@ export const AuthContextProvider = ({ children }) => {
     netlifyIdentity.open();
   };
 
-  const context = { user, login };
+  const logout = () => {
+    // When user click the button for logout
+    netlifyIdentity.logout();
+  };
+  const context = { user, login, logout };
   return (
     <AuthContext.Provider value={context}>{children}</AuthContext.Provider>
   );
