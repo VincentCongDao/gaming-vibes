@@ -22,16 +22,13 @@ export const AuthContextProvider = ({ children }) => {
     netlifyIdentity.on("logout", () => {
       setUser(null);
       console.log("logout event");
-
-      // init netlify identity connection
-      // Whether if the user is login or logout
-      netlifyIdentity.init();
-
-      return () => {
-        netlifyIdentity.off("login");
-        netlifyIdentity.off("logout");
-      };
-    });
+    }); // init netlify identity connection
+    // Whether if the user is login or logout
+    netlifyIdentity.init();
+    return () => {
+      netlifyIdentity.off("login");
+      netlifyIdentity.off("logout");
+    };
   }, []);
 
   // When user click on the login button to activate this function
