@@ -24,7 +24,6 @@ export default function Navbar() {
                 <a>Guides</a>
               </Link>
             </li>
-
             {!user && (
               <li onClick={login} className="btn">
                 Login/SignUp
