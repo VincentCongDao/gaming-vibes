@@ -46,7 +46,7 @@ export const AuthContextProvider = ({ children }) => {
     // When user click the button for logout
     netlifyIdentity.logout();
   };
-  const context = { user, login, logout };
+  const context = { user, login, logout, authReady };
   return (
     <AuthContext.Provider value={context}>{children}</AuthContext.Provider>
   );

@@ -2,3 +2,5 @@
   1. Using netlify identity widget to create sign up/login feature
      1. JSON is on netlify
      1. When user sign up, don't need for confirmation
+
+* Serverless netlify function
